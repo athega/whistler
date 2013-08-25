@@ -7,7 +7,7 @@ ruby "2.0.0"
 gem "lita"
 
 # Adapter
-gem "lita-campfire"
+gem "lita-campfire", :git => "https://github.com/josacar/lita-campfire.git"
 
 group :development do
   gem "rspec"
