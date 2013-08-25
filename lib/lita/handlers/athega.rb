@@ -90,9 +90,8 @@ module Lita
       end
 
       def json_get(url)
-        MultiJson.load(http.get(url).body)
-      rescue
-        nil
+        response = http.get(url)
+        MultiJson.load(response.body)
       end
     end
 
