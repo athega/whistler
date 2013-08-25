@@ -4,7 +4,9 @@ require "lita/rspec"
 require_relative "../lib/lita-athega"
 
 describe Lita::Handlers::Athega, lita_handler: true do
-  it { routes_command("athegian foo").to(:athegian) }
+  it { routes_http(:get, "/").to(:whistler) }
+
+  it { routes("/athegian foo").to(:athegian) }
 
   describe "athegian" do
     before do
@@ -19,10 +21,17 @@ describe Lita::Handlers::Athega, lita_handler: true do
     end
 
     it "returns athegian data" do
-      send_command("athegian foo")
-      replies.should == ["foo.jpg", "bar", "baz"]
+      send_message("/athegian foo")
+
+      replies.should == [
+        "foo.jpg",
+        "bar",
+        "baz"
+      ]
     end
   end
+
+  it { routes("/aww").to(:aww) }
 
   describe "aww" do
     before do

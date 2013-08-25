@@ -3,10 +3,22 @@ require "lita"
 module Lita
   module Handlers
     class Athega < Handler
-      route /athegian\s+(\w+)/,
-        :athegian, command: true, help: {
-          "athegian NAME" => "Retrieves image and position from the Athega API"
-        }
+      http.get "/", :whistler
+
+      def whistler(request, response)
+        response.headers["Content-Type"] = "text/html"
+
+        logo_url = 'https://raw.github.com/athega/whistler/master/images/whistler.jpg'
+
+        html = "<a href='https://github.com/athega/whistler'>" +
+               "<img src='#{logo_url}' alt='Whistler' />" +
+               "</a>"
+
+        response.write(html)
+      end
+
+      route /^\/athegian\s+(\w+)/, :athegian,
+        help: { "athegian NAME" => "Retrieves image and position for employee" }
 
       def athegian(response)
         name = response.matches[0][0]
@@ -18,9 +30,8 @@ module Lita
         end
       end
 
-      route /^\/aww$/, :aww, command: false, help: {
-        "/aww" => "Random cute image"
-      }
+      route /^\/aww$/, :aww,
+        help: { "/aww" => "Random cute image" }
 
       def aww(response)
         url = get_random_reddit_field('aww/top.json?limit=10', :url)
