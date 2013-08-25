@@ -1,1 +1,1 @@
-require "lita/handlers/athega"
+require_relative "lita/handlers/athega"
