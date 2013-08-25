@@ -1,3 +1,5 @@
+require "lita-athega"
+
 Lita.configure do |config|
   # The name your robot will use.
   config.robot.name = "Whistler"
