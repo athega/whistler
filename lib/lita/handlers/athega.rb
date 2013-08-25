@@ -18,14 +18,37 @@ module Lita
         end
       end
 
+      route /^\/aww$/, :aww, command: false, help: {
+        "/aww" => "Random cute image"
+      }
+
+      def aww(response)
+        url = get_random_reddit_field('aww/top.json?limit=10', :url)
+
+        response.reply(url) if url
+      end
+
     private
 
-      def get_athegian_data(name)
-        name = name.split(' ').first.downcase
+      def get_random_reddit_field(path, field)
+        url = reddit_url(path)
 
-        base_url = "http://athega.se/api/employees/"
-        http_response = http.get("#{base_url}#{name}")
-        MultiJson.load(http_response.body)
+        if data = json_get(url)
+          post = data['data']['children'].sample
+          post['data'][field.to_s]
+        end
+      end
+
+      def reddit_url(path)
+        "http://api.reddit.com/r/#{path}"
+      end
+
+      def get_athegian_data(name)
+        json_get("http://athega.se/api/employees/#{name.downcase}")
+      end
+
+      def json_get(url)
+        MultiJson.load(http.get(url).body)
       rescue
         nil
       end
