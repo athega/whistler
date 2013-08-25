@@ -19,6 +19,6 @@ Lita.configure do |config|
   config.adapter.rooms     = ENV["CAMPFIRE_ROOMS"].split(',')
   config.adapter.debug     = false
 
-  config.redis.url         = ENV["REDIS_URL"]
+  config.redis.url         = ENV["REDISCLOUD_URL"]
   config.http.port         = ENV["PORT"]
 end
