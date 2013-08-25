@@ -68,6 +68,10 @@ module Lita
         json_get('http://xkcd.com/info.0.json')
       end
 
+      def get_xkcd_data(num)
+        json_get("http://xkcd.com/#{num}/info.0.json")
+      end
+
       def get_random_reddit_field(path, field)
         url = reddit_url(path)
 
