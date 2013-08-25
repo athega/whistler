@@ -1,7 +1,6 @@
 Lita.configure do |config|
   # The name your robot will use.
   config.robot.name = "Whistler"
-  config.robot.mention_name = "/"
 
   # The severity of messages to log
   config.robot.log_level = :info
