@@ -1,4 +1,4 @@
-require "lita-athega"
+require_relative "lib/lita-athega"
 
 Lita.configure do |config|
   # The name your robot will use.
