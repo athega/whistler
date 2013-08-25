@@ -24,8 +24,6 @@ GEM
     lita-campfire (0.1)
       lita (~> 2.0)
       tinder (~> 1.9.0)
-    lita-google-images (1.0.2)
-      lita (~> 2.0)
     mime-types (1.24)
     multi_json (1.7.9)
     multipart-post (1.2.0)
@@ -68,5 +66,4 @@ DEPENDENCIES
   fakeredis
   lita
   lita-campfire
-  lita-google-images
   rspec

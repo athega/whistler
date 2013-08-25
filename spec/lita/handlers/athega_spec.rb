@@ -1,7 +1,7 @@
 require "fakeredis/rspec"
 require "lita/rspec"
 
-require_relative "../lib/lita-athega"
+require "lita/handlers/athega"
 
 describe Lita::Handlers::Athega, lita_handler: true do
   it { routes_http(:get, "/").to(:whistler) }
