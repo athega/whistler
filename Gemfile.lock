@@ -6,15 +6,6 @@ GIT
       lita (~> 2.0)
       tinder (~> 1.9.0)
 
-GIT
-  remote: https://github.com/voloko/twitter-stream.git
-  revision: b8508063187eb4052a2bb0b61cd4c4837a46e1b0
-  specs:
-    twitter-stream (0.1.15)
-      eventmachine (>= 0.12.8)
-      http_parser.rb (~> 0.5.1)
-      simple_oauth (~> 0.1.4)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -68,6 +59,10 @@ GEM
       mime-types (~> 1.19)
       multi_json (~> 1.5)
       twitter-stream (~> 0.1)
+    twitter-stream (0.1.16)
+      eventmachine (>= 0.12.8)
+      http_parser.rb (~> 0.5.1)
+      simple_oauth (~> 0.1.4)
 
 PLATFORMS
   ruby
@@ -77,4 +72,3 @@ DEPENDENCIES
   lita
   lita-campfire!
   rspec
-  twitter-stream!
