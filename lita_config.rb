@@ -1,3 +1,5 @@
+require_relative "lib/lita/handlers/help"
+
 Lita.configure do |config|
   # The name your robot will use.
   config.robot.name = "Whistler"
