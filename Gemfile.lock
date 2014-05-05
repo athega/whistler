@@ -30,10 +30,17 @@ GEM
       tinder (~> 1.9.4)
     lita-catgif (0.0.2)
       lita (>= 2.6)
+    lita-excuses (0.0.6)
+      lita (>= 2.2)
+      nokogiri
     lita-google-images (1.0.4)
       lita (>= 2.0)
+    lita-wikipedia (0.0.3)
+      lita (>= 3.1)
     lita-xkcd (0.0.5)
       lita (>= 2.2)
+    lita-youtube (0.0.4)
+      lita (>= 2.6)
     mime-types (1.25.1)
     mini_portile (0.5.3)
     multi_json (1.9.3)
@@ -71,6 +78,9 @@ DEPENDENCIES
   lita (~> 3.2.0)
   lita-campfire (~> 0.2.0)
   lita-catgif
+  lita-excuses
   lita-google-images
+  lita-wikipedia
   lita-xkcd
+  lita-youtube
   nokogiri

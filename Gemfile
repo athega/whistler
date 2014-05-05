@@ -13,6 +13,9 @@ gem "lita-campfire", "~> 0.2.0"
 gem "lita-google-images"
 gem "lita-catgif"
 gem "lita-xkcd"
+gem "lita-youtube"
+gem "lita-wikipedia"
+gem "lita-excuses"
 
 # Dependencies
 gem "nokogiri"
