@@ -32,7 +32,7 @@ module Lita
         response.reply(twitter_images.first['content'] + "#.jpg") if twitter_images.any?
 
         titles = doc.css('meta[property="og:title"]')
-        response.reply(title.first['content']) if titles.any?
+        response.reply(titles.first['content']) if titles.any?
       end
 
       route /^aww$/, :aww,
