@@ -3,8 +3,8 @@ require "lita"
 module Lita
   module Handlers
     class Athega < Handler
-      route /^\/athegian\s+(\w+)/, :athegian,
-        help: { "athegian NAME" => "Retrieves image and position for employee" }
+      route /^athegian\s+(\w+)/, :athegian,
+        help: { "/athegian NAME" => "Retrieves image and position for employee" }
 
       def athegian(response)
         name = arg(response)
@@ -18,8 +18,8 @@ module Lita
         end
       end
 
-      route /^\/aww$/, :aww,
-        help: { "aww" => "Random cute image" }
+      route /^aww$/, :aww,
+        help: { "/aww" => "Random cute image" }
 
       def aww(response)
         url = get_random_reddit_field('aww/top.json?limit=10', :url)
