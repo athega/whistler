@@ -1,4 +1,5 @@
 require_relative "lib/lita/handlers/help"
+require_relative "lib/lita/handlers/athega"
 
 Lita.configure do |config|
   # The name your robot will use.

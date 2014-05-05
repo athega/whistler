@@ -4,7 +4,7 @@ module Lita
   module Handlers
     class Athega < Handler
       route /^\/athegian\s+(\w+)/, :athegian,
-        help: { "/athegian NAME" => "Retrieves image and position for employee" }
+        help: { "athegian NAME" => "Retrieves image and position for employee" }
 
       def athegian(response)
         name = arg(response)
@@ -18,25 +18,8 @@ module Lita
         end
       end
 
-      route /^\/xkcd\s?(\d+)?/, :xkcd, help: {
-        "/xkcd"     => "The latest XKCD comic",
-        "/xkcd NUM" => "XKCD comic <num>"
-      }
-
-      def xkcd(response)
-        num = arg(response)
-
-        data = num ? get_xkcd_data(num) : get_latest_xkcd_data
-
-        if data
-          response.reply(data['img'])
-          response.reply(data['title'])
-          response.reply(data['alt'])
-        end
-      end
-
       route /^\/aww$/, :aww,
-        help: { "/aww" => "Random cute image" }
+        help: { "aww" => "Random cute image" }
 
       def aww(response)
         url = get_random_reddit_field('aww/top.json?limit=10', :url)
@@ -64,14 +47,6 @@ module Lita
         response.matches[0][0]
       end
 
-      def get_latest_xkcd_data
-        json_get('http://xkcd.com/info.0.json')
-      end
-
-      def get_xkcd_data(num)
-        json_get("http://xkcd.com/#{num}/info.0.json")
-      end
-
       def get_random_reddit_field(path, field)
         url = reddit_url(path)
 
@@ -91,6 +66,7 @@ module Lita
 
       def json_get(url)
         response = http.get(url)
+
         MultiJson.load(response.body)
       end
     end
