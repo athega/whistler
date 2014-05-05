@@ -29,10 +29,16 @@ module Lita
         doc = Nokogiri::HTML open(arg(response))
 
         twitter_images = doc.css('meta[property="twitter:image"]')
-        response.reply(twitter_images.first['content'] + "#.jpg") if twitter_images.any?
 
-        titles = doc.css('meta[property="og:title"]')
-        response.reply(titles.first['content']) if titles.any?
+        if twitter_images.any?
+          response.reply twitter_images.first['content'] + "#.jpg"
+        end
+
+        descriptions = doc.css('meta[property="og:description"]')
+
+        if descriptions.any?
+          response.reply descriptions.first['content'].gsub(" on Spotify.", "")
+        end
       end
 
       route /^aww$/, :aww,
