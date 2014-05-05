@@ -35,8 +35,11 @@ GEM
     lita-xkcd (0.0.5)
       lita (>= 2.2)
     mime-types (1.25.1)
+    mini_portile (0.5.3)
     multi_json (1.9.3)
     multipart-post (1.2.0)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     puma (2.8.2)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
@@ -70,3 +73,4 @@ DEPENDENCIES
   lita-catgif
   lita-google-images
   lita-xkcd
+  nokogiri
