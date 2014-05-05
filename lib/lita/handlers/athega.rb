@@ -1,9 +1,12 @@
 require "lita"
 
+require "nokogiri"
+require "open-uri"
+
 module Lita
   module Handlers
     class Athega < Handler
-      route /^athegian\s+(\w+)/, :athegian,
+      route /^athegian\s+(\w+)/, :athegian, command: true,
         help: { "/athegian NAME" => "Retrieves image and position for employee" }
 
       def athegian(response)
@@ -16,6 +19,20 @@ module Lita
         else
           response.reply("Sorry, no such employee at Athega.")
         end
+      end
+
+      # http://open.spotify.com/track/659TMQbtxXIBE8AVWomlvx
+      route /(http:\/\/open.spotify.com\/\w+\/\w+)/, :spotify, command: false,
+        help: { "[Spotify URL]" => "Retrieves image and title from any Spotify URL" }
+
+      def spotify(response)
+        doc = Nokogiri::HTML open(arg(response))
+
+        twitter_images = doc.css('meta[property="twitter:image"]')
+        response.reply(twitter_images.first['content'] + "#.jpg") if twitter_images.any?
+
+        titles = doc.css('meta[property="og:title"]')
+        response.reply(title.first['content']) if titles.any?
       end
 
       route /^aww$/, :aww,
