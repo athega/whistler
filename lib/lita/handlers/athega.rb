@@ -7,7 +7,7 @@ module Lita
   module Handlers
     class Athega < Handler
       route /^athegian\s+(\w+)/, :athegian, command: true,
-        help: { "/athegian NAME" => "Retrieves image and position for employee" }
+        help: { "athegian NAME" => "Retrieves image and position for employee" }
 
       def athegian(response)
         name = arg(response)
