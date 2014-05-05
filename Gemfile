@@ -1,18 +1,15 @@
 source "https://rubygems.org"
 
 # Required Ruby version
-ruby "2.0.0"
-
-# Dependencies
-gem "twitter-stream", :git => "https://github.com/voloko/twitter-stream.git"
+ruby "2.1.1"
 
 # Application
-gem "lita", :git => "https://github.com/jimmycuadra/lita.git"
+gem "lita", "~> 3.2.0"
 
 # Adapter
-gem "lita-campfire", :git => "https://github.com/josacar/lita-campfire.git"
+gem "lita-campfire", "~> 0.2.0"
 
-group :development do
-  gem "rspec"
-  gem "fakeredis", :require => "fakeredis/rspec"
-end
+# Handlers
+gem "lita-google-images"
+gem "lita-catgif"
+gem "lita-xkcd"
