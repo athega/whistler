@@ -16,6 +16,8 @@ gem "lita-xkcd"
 gem "lita-youtube"
 gem "lita-wikipedia"
 gem "lita-excuses"
+gem "lita-flip"
+gem "lita-latex"
 
 # Dependencies
 gem "nokogiri"

@@ -33,8 +33,12 @@ GEM
     lita-excuses (0.0.6)
       lita (>= 2.2)
       nokogiri
+    lita-flip (1.0.1)
+      lita
     lita-google-images (1.0.4)
       lita (>= 2.0)
+    lita-latex (0.0.3)
+      lita
     lita-wikipedia (0.0.3)
       lita (>= 3.1)
     lita-xkcd (0.0.5)
@@ -79,7 +83,9 @@ DEPENDENCIES
   lita-campfire (~> 0.2.0)
   lita-catgif
   lita-excuses
+  lita-flip
   lita-google-images
+  lita-latex
   lita-wikipedia
   lita-xkcd
   lita-youtube
