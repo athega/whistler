@@ -53,7 +53,7 @@ module Lita
         if t.friday?
           f = Chronic.parse("Today at 17:00 CET")
 
-          if f.hour >= 17
+          if t.hour >= 17
             response.reply "Fredagsöl is now."
           else
             total_seconds = (f-t).to_i
