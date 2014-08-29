@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Required Ruby version
-ruby "2.1.1"
+ruby "2.1.2"
 
 # Application
 gem "lita", "~> 3.2.0"
@@ -21,3 +21,4 @@ gem "lita-latex"
 
 # Dependencies
 gem "nokogiri"
+gem "chronic"
