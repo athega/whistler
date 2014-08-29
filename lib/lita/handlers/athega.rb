@@ -1,5 +1,8 @@
+# encoding: utf-8
+
 require "lita"
 
+require "chronic"
 require "nokogiri"
 require "open-uri"
 
@@ -38,6 +41,39 @@ module Lita
 
         if descriptions.any?
           response.reply descriptions.first['content'].gsub(" on Spotify.", "")
+        end
+      end
+
+      route /^fredagsöl/, :fredagsol,
+        help: { "/fredagsöl" => "Time left to fredagsöl" }
+
+      def fredagsol(response)
+        t = Time.now.getlocal('+02:00')
+
+        if t.friday?
+          f = Chronic.parse("Today at 17:00 CET")
+
+          if f.hour >= 17
+            response.reply "Fredagsöl is now."
+          else
+            total_seconds = (f-t).to_i
+
+            seconds = total_seconds % 60
+            minutes = (total_seconds / 60) % 60
+            hours = total_seconds / (60 * 60)
+
+            response.reply "Next Fredagsöl: #{hours} hours, #{minutes} minutes, #{seconds} seconds"
+          end
+        else
+          f = Chronic.parse("Friday at 17:00 CET")
+
+          total_seconds = (f-t).to_i
+
+          seconds = total_seconds % 60
+          minutes = (total_seconds / 60) % 60
+          hours = total_seconds / (60 * 60)
+
+          response.reply "Next Fredagsöl: #{hours} hours, #{minutes} minutes, #{seconds} seconds"
         end
       end
 
