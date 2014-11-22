@@ -18,13 +18,12 @@ func (b FredagsölBot) Run(command *SlashCommand) (slashCommandImmediateReturn s
 
 // DeferredAction makes a incoming webhook call
 func (b FredagsölBot) DeferredAction(command *SlashCommand) {
-	response := new(IncomingWebhook)
-	response.Channel = "#" + command.ChannelName
-	response.Username = "Fredagsöl"
-	response.Text = "Vet inte."
-	response.IconEmoji = ":beer:"
-
-	MakeIncomingWebhookCall(response)
+	MakeIncomingWebhookCall(&IncomingWebhook{
+		Channel:   command.ChannelID,
+		IconEmoji: ":beer:",
+		Username:  "Fredagsöl",
+		Text:      "Vet inte.",
+	})
 }
 
 // Description describes the Fredagsöl bot
