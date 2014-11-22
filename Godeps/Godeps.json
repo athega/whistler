@@ -1,0 +1,10 @@
+{
+	"ImportPath": "github.com/athega/whistler",
+	"GoVersion": "go1.3.3",
+	"Deps": [
+		{
+			"ImportPath": "github.com/gorilla/schema",
+			"Rev": "ad8849d14e5cdf1f4423b1f0fc53827ebbdd7477"
+		}
+	]
+}
