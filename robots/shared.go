@@ -21,23 +21,15 @@ func init() {
 	flag.Parse()
 
 	Config.Port = env.String("PORT", "5454")
-	if Config.Port == "" {
-		log.Fatal("PORT not set")
-	}
-
 	Config.WebhookURL = env.String("SLACK_WEBHOOK_URL", "")
-	if Config.WebhookURL == "" {
-		log.Fatal("SLACK_WEBHOOK_URL not set")
-	}
 }
 
 // RegisterRobot registers a command and init function for a robot
-func RegisterRobot(command string, RobotInitFunction func() Robot) {
+func RegisterRobot(command string, robotInitFunction func() Robot) {
 	if _, ok := Robots[command]; ok {
 		log.Printf("There are two robots mapped to %s!", command)
 	} else {
-		log.Printf("Registered: %s", command)
-		Robots[command] = RobotInitFunction
+		Robots[command] = robotInitFunction
 	}
 }
 
