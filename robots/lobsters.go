@@ -1,6 +1,7 @@
 package robots
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/peterhellberg/lobsters"
@@ -47,29 +48,39 @@ func (b LobstersBot) DeferredAction(c *SlashCommand) {
 func (b LobstersBot) hottest(c *SlashCommand, args []string) {
 	stories, err := b.Client.Hottest()
 	if err != nil {
-		b.respond(c, "could not find the hottest stories")
+		b.respond(c, "could not find the hottest stories", []Attachment{})
 		return
 	}
 
-	for i, story := range stories {
-		if i > 2 {
-			break
+	attachments := []Attachment{}
+	for _, story := range stories {
+		url := story.URL
+
+		if url == "" {
+			url = story.CommentsURL
 		}
 
-		b.respond(c, strings.Join([]string{
-			story.Title,
-			story.URL,
-		}, "\n"))
+		attachments = append(attachments, Attachment{
+			Text:  fmt.Sprintf("Score: %v", story.Score),
+			Color: "#FF6600",
+			Fields: []AttachmentField{
+				AttachmentField{
+					Title: story.Title,
+					Value: url,
+				},
+			},
+		})
 	}
+
+	b.respond(c, "", attachments)
 }
 
-func (b LobstersBot) respond(c *SlashCommand, text string) {
+func (b LobstersBot) respond(c *SlashCommand, text string, attachments []Attachment) {
 	MakeIncomingWebhookCall(&IncomingWebhook{
 		Channel:     "@" + c.Username,
 		Username:    "Lobste.rs",
-		Text:        text,
 		IconEmoji:   ":fried_shrimp:",
-		UnfurlLinks: true,
-		Parse:       "full",
+		Text:        text,
+		Attachments: attachments,
 	})
 }
