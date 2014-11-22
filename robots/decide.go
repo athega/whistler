@@ -28,13 +28,13 @@ func (b DecideBot) Run(command *SlashCommand) (slashCommandImmediateReturn strin
 
 // DeferredAction makes two incoming webhook calls
 func (b DecideBot) DeferredAction(command *SlashCommand) {
-	response := new(IncomingWebhook)
-
-	response.Channel = "#" + command.ChannelName
-	response.Username = "Whistler"
-	response.IconEmoji = ":whistler:"
-	response.UnfurlLinks = true
-	response.Parse = "full"
+	response := &IncomingWebhook{
+		Channel:     command.ChannelID,
+		Username:    "Whistler",
+		IconEmoji:   ":whistler:",
+		UnfurlLinks: true,
+		Parse:       "full",
+	}
 
 	text := strings.TrimSpace(command.Text)
 	if text != "" {
