@@ -7,8 +7,6 @@ import (
 	"log"
 	"net/http"
 	"net/url"
-
-	"github.com/athega/whistler/env"
 )
 
 // Robots contains a map of robots
@@ -20,8 +18,8 @@ var Config = new(Configuration)
 func init() {
 	flag.Parse()
 
-	Config.Port = env.String("PORT", "5454")
-	Config.WebhookURL = env.String("SLACK_WEBHOOK_URL", "")
+	Config.Port = EnvString("PORT", "5454")
+	Config.WebhookURL = EnvString("SLACK_WEBHOOK_URL", "")
 }
 
 // RegisterRobot registers a command and init function for a robot
