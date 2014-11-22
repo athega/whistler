@@ -1,1 +1,1 @@
-web: bundle exec lita
+web: whistler
