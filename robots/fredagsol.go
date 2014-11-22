@@ -25,3 +25,8 @@ func (p PingBot) DeferredAction(command *SlashCommand) {
 	response.Parse = "full"
 	MakeIncomingWebhookCall(response)
 }
+
+// Description describes the Fredagsöl bot
+func (p PingBot) Description() (description string) {
+	return "Fredagsöl bot!\n\tUsage: /fredagsöl\n\tExpected Response: Fredagsöl nu!"
+}
