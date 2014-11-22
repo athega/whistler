@@ -17,12 +17,11 @@ func (b FredagsölBot) Run(command *SlashCommand) (slashCommandImmediateReturn s
 // DeferredAction makes a incoming webhook call
 func (b FredagsölBot) DeferredAction(command *SlashCommand) {
 	response := new(IncomingWebhook)
-	response.Channel = command.ChannelID
+	response.Channel = command.ChannelName
 	response.Username = "Fredagsöl"
 	response.Text = "Vet inte."
 	response.IconEmoji = ":beer:"
-	response.UnfurlLinks = true
-	response.Parse = "full"
+
 	MakeIncomingWebhookCall(response)
 }
 
