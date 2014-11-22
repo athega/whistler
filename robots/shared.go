@@ -30,8 +30,8 @@ func init() {
 		log.Fatal("PORT not set")
 	}
 
-	Config.Token = env.String("SLACK_WEBHOOK_URL", "")
-	if Config.Token == "" {
+	Config.WebhookURL = env.String("SLACK_WEBHOOK_URL", "")
+	if Config.WebhookURL == "" {
 		log.Fatal("SLACK_WEBHOOK_URL not set")
 	}
 }
@@ -60,15 +60,12 @@ func MakeIncomingWebhookCall(payload *IncomingWebhook) error {
 
 	postData := url.Values{}
 	postData.Set("payload", string(jsonPayload))
-	postData.Set("token", Config.Token)
 
-	webhook.RawQuery = postData.Encode()
-	resp, err := http.PostForm(webhook.String(), postData)
-
+	resp, err := http.PostForm(Config.WebhookURL, postData)
 	if resp.StatusCode != 200 {
 		message := fmt.Sprintf("ERROR: Non-200 Response from Slack Incoming Webhook API: %s", resp.Status)
 		log.Println(message)
 	}
 
-	return err
+	return nil
 }
