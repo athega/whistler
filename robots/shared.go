@@ -48,7 +48,7 @@ func RegisterRobot(command string, RobotInitFunction func() Robot) {
 
 // MakeIncomingWebhookCall makes an incomming web hook call to Slack
 func MakeIncomingWebhookCall(payload *IncomingWebhook) error {
-	webhook, err := url.Parse(Config.WebhookURL)
+	_, err := url.Parse(Config.WebhookURL)
 	if err != nil {
 		return err
 	}
