@@ -49,7 +49,6 @@ type AttachmentField struct {
 type Configuration struct {
 	Domain     string
 	Port       string
-	Token      string
 	WebhookURL string
 }
 
