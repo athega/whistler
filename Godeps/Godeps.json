@@ -9,6 +9,10 @@
 		{
 			"ImportPath": "github.com/peterhellberg/giphy",
 			"Rev": "36c02cdf4cfcbfabd632187fcaa4491268421352"
+		},
+		{
+			"ImportPath": "github.com/peterhellberg/lobsters",
+			"Rev": "46bc7fbd28447d92306f9f7cc8d224d22811dcb7"
 		}
 	]
 }
