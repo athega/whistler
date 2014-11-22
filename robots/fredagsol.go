@@ -9,13 +9,13 @@ func init() {
 }
 
 // Run executes a deferred action
-func (p PingBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
-	go p.DeferredAction(command)
+func (b FredagsölBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
+	go b.DeferredAction(command)
 	return ""
 }
 
 // DeferredAction makes a incoming webhook call
-func (p PingBot) DeferredAction(command *SlashCommand) {
+func (b FredagsölBot) DeferredAction(command *SlashCommand) {
 	response := new(IncomingWebhook)
 	response.Channel = command.ChannelID
 	response.Username = "Fredagsöl"
@@ -27,6 +27,6 @@ func (p PingBot) DeferredAction(command *SlashCommand) {
 }
 
 // Description describes the Fredagsöl bot
-func (p PingBot) Description() (description string) {
+func (b FredagsölBot) Description() (description string) {
 	return "Fredagsöl bot!\n\tUsage: /fredagsöl\n\tExpected Response: Fredagsöl nu!"
 }
