@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"io"
 	"log"
 	"net/http"
@@ -62,29 +61,11 @@ func commandHandler(w http.ResponseWriter, r *http.Request) {
 		robot := getRobot(command.Command)
 		w.WriteHeader(http.StatusOK)
 
-		respFn := plainResp
-		if hook {
-			respFn = jsonResp
-		}
-
 		if robot != nil {
-			respFn(w, robot.Run(command))
+			plainResp(w, robot.Run(command))
 		} else {
-			respFn(w, "No robot for that command yet :(")
+			plainResp(w, "No robot for that command yet :(")
 		}
-	}
-}
-
-func jsonResp(w http.ResponseWriter, msg string) {
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-
-	resp := map[string]string{"text": msg}
-	r, err := json.Marshal(resp)
-
-	if err != nil {
-		log.Println("Couldn't marshal hook response:", err)
-	} else {
-		io.WriteString(w, string(r))
 	}
 }
 
