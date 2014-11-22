@@ -39,6 +39,12 @@ func commandHandler(w http.ResponseWriter, r *http.Request) {
 			log.Println("Couldn't parse post request:", err)
 		}
 
+		// Check if we got a command
+		if command.Command == "" {
+			log.Println("No command given", r.PostForm)
+			return
+		}
+
 		if hook {
 			c := strings.Split(command.Text, " ")
 			command.Command = c[1]
@@ -92,8 +98,9 @@ func startServer() {
 }
 
 func getRobot(command string) robots.Robot {
-	if RobotInitFunction, ok := robots.Robots[command]; ok {
-		return RobotInitFunction()
+	if robotInitFunction, ok := robots.Robots[command]; ok {
+		return robotInitFunction()
 	}
+
 	return nil
 }
