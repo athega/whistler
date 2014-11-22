@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io"
 	"log"
 	"net/http"
 	"strings"
@@ -75,8 +74,7 @@ func commandHandler(w http.ResponseWriter, r *http.Request) {
 
 func plainResp(w http.ResponseWriter, msg string) {
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-
-	io.WriteString(w, msg)
+	w.Write([]byte(msg))
 }
 
 func startServer() {
