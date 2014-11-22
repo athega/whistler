@@ -20,11 +20,6 @@ var Config = new(Configuration)
 func init() {
 	flag.Parse()
 
-	Config.Domain = env.String("SLACK_DOMAIN", "athega")
-	if Config.Domain == "" {
-		log.Fatal("SLACK_DOMAIN not set")
-	}
-
 	Config.Port = env.String("PORT", "5454")
 	if Config.Port == "" {
 		log.Fatal("PORT not set")

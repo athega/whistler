@@ -47,7 +47,6 @@ type AttachmentField struct {
 
 // Configuration is the global configuration of the robots
 type Configuration struct {
-	Domain     string
 	Port       string
 	WebhookURL string
 }
