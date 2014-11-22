@@ -1,5 +1,7 @@
 package robots
 
+import "strings"
+
 // FredagsölBot keeps track of when to drink beer
 type FredagsölBot struct {
 }
@@ -27,5 +29,9 @@ func (b FredagsölBot) DeferredAction(command *SlashCommand) {
 
 // Description describes the Fredagsöl bot
 func (b FredagsölBot) Description() (description string) {
-	return "Fredagsöl bot!\n\tUsage: /fredagsöl\n\tExpected Response: Fredagsöl nu!"
+	return strings.Join([]string{
+		"Fredagsöl bot!",
+		"Usage: /fredagsöl",
+		"Expected Response: Fredagsöl nu!",
+	}, "\n\t")
 }
