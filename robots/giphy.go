@@ -49,6 +49,7 @@ func (b GiphyBot) Description() string {
 	return strings.Join([]string{
 		"Glorious GIFs! (Powered By Giphy)",
 		"Usage: /whistler giphy [args]",
+		"Commands: search, gif, random, translate, trending",
 		"Expected Response: An URL to a GIF!",
 	}, "\n\t")
 }
