@@ -61,8 +61,18 @@ func (b ListBot) Description() string {
 
 ### Running Whistler locally
 
+Note: You need to add the integration *Incoming Webhooks* [here](https://my.slack.com/services).
+
 ```bash
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/… go run main.go
+```
+
+### Development request
+
+Note: You can find the ID of your Slack channels [here](https://api.slack.com/methods/channels.list/test).
+
+```bash
+curl -X POST -d 'user_name=peterhellberg&channel_id=…&command=/whistler&text=lobsters' http://0.0.0.0:5454/slack_hook
 ```
 
 ### Restarting Whistler
