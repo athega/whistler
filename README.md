@@ -30,17 +30,17 @@ func init() {
 }
 
 // Run executes a deferred action
-func (b FooBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
-	go b.DeferredAction(command)
+func (b FooBot) Run(c *SlashCommand) string {
+	go b.DeferredAction(c)
 	return ""
 }
 
 // DeferredAction makes a incoming webhook call
-func (b FooBot) DeferredAction(command *SlashCommand) {
+func (b FooBot) DeferredAction(c *SlashCommand) {
 	MakeIncomingWebhookCall(&IncomingWebhook{
-		Channel:     command.ChannelID,
+		Channel:     c.ChannelID,
 		Username:    "Foo Bot",
-		Text:        fmt.Sprintf("@%s Something!", command.Username),
+		Text:        fmt.Sprintf("@%s Something!", c.Username),
 		IconEmoji:   ":apple:",
 		UnfurlLinks: true,
 		Parse:       "full",
@@ -48,7 +48,7 @@ func (b FooBot) DeferredAction(command *SlashCommand) {
 }
 
 // Description describes what the robot does
-func (b ListBot) Description() (description string) {
+func (b ListBot) Description() string {
 	return strings.Join([]string{
 		"Does something!",
 		"Usage: /whistler foo [args]",
