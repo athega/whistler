@@ -53,6 +53,6 @@ type Configuration struct {
 
 // Robot is the interface all robots must follow
 type Robot interface {
-	Run(command *SlashCommand) (slashCommandImmediateReturn string)
-	Description() (description string)
+	Run(*SlashCommand) string
+	Description() string
 }

@@ -14,25 +14,25 @@ func init() {
 }
 
 // Run executes a deferred action
-func (b PingBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
-	go b.DeferredAction(command)
+func (b PingBot) Run(c *SlashCommand) string {
+	go b.DeferredAction(c)
 	return ""
 }
 
 // DeferredAction makes a incoming webhook call
-func (b PingBot) DeferredAction(command *SlashCommand) {
+func (b PingBot) DeferredAction(c *SlashCommand) {
 	MakeIncomingWebhookCall(&IncomingWebhook{
-		Channel:     command.ChannelID,
+		Channel:     c.ChannelID,
 		Username:    "Ping Bot",
-		Text:        fmt.Sprintf("@%s Pong!", command.Username),
+		Text:        fmt.Sprintf("@%s Pong!", c.Username),
 		IconEmoji:   ":ghost:",
 		UnfurlLinks: true,
 		Parse:       "full",
 	})
 }
 
-// Description describes the Ping bot
-func (b PingBot) Description() (description string) {
+// Description describes what the robot does
+func (b PingBot) Description() string {
 	return strings.Join([]string{
 		"Ping bot!",
 		"Usage: /whistler ping",
