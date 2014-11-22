@@ -32,5 +32,5 @@ func (p PingBot) DeferredAction(command *SlashCommand) {
 
 // Description describes the Ping bot
 func (p PingBot) Description() (description string) {
-	return "Ping bot!\n\tUsage: /ping\n\tExpected Response: @user: Pong!"
+	return "Ping bot!\n\tUsage: /whistler ping\n\tExpected Response: @user: Pong!"
 }
