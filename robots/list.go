@@ -9,7 +9,7 @@ func init() {
 }
 
 // Run returns a list of all robots
-func (r ListBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
+func (b ListBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
 	output := ""
 	for command, RobotInitFunction := range Robots {
 		robot := RobotInitFunction()
@@ -19,6 +19,6 @@ func (r ListBot) Run(command *SlashCommand) (slashCommandImmediateReturn string)
 }
 
 // Description describes what the robot does
-func (r ListBot) Description() (description string) {
+func (b ListBot) Description() (description string) {
 	return "Lists commands!\n\tUsage: You already know how to use this!\n\tExpected Response: This message!"
 }

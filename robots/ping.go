@@ -2,6 +2,7 @@ package robots
 
 import (
 	"fmt"
+	"strings"
 )
 
 // PingBot is a simple ping/pong bot
@@ -13,24 +14,28 @@ func init() {
 }
 
 // Run executes a deferred action
-func (p PingBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
-	go p.DeferredAction(command)
+func (b PingBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
+	go b.DeferredAction(command)
 	return ""
 }
 
 // DeferredAction makes a incoming webhook call
-func (p PingBot) DeferredAction(command *SlashCommand) {
-	response := new(IncomingWebhook)
-	response.Channel = command.ChannelID
-	response.Username = "Ping Bot"
-	response.Text = fmt.Sprintf("@%s Pong!", command.Username)
-	response.IconEmoji = ":ghost:"
-	response.UnfurlLinks = true
-	response.Parse = "full"
-	MakeIncomingWebhookCall(response)
+func (b PingBot) DeferredAction(command *SlashCommand) {
+	MakeIncomingWebhookCall(&IncomingWebhook{
+		Channel:     command.ChannelID,
+		Username:    "Ping Bot",
+		Text:        fmt.Sprintf("@%s Pong!", command.Username),
+		IconEmoji:   ":ghost:",
+		UnfurlLinks: true,
+		Parse:       "full",
+	})
 }
 
 // Description describes the Ping bot
-func (p PingBot) Description() (description string) {
-	return "Ping bot!\n\tUsage: /whistler ping\n\tExpected Response: @user: Pong!"
+func (b PingBot) Description() (description string) {
+	return strings.Join([]string{
+		"Ping bot!",
+		"Usage: /whistler ping",
+		"Expected Response: @user: Pong!",
+	}, "\n\t")
 }

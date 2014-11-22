@@ -16,8 +16,8 @@ func init() {
 }
 
 // Run executes a deferred action
-func (d DecideBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
-	go d.DeferredAction(command)
+func (b DecideBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
+	go b.DeferredAction(command)
 
 	if strings.TrimSpace(command.Text) == "" {
 		return "I need something to decide on!"
@@ -27,7 +27,7 @@ func (d DecideBot) Run(command *SlashCommand) (slashCommandImmediateReturn strin
 }
 
 // DeferredAction makes two incoming webhook calls
-func (d DecideBot) DeferredAction(command *SlashCommand) {
+func (b DecideBot) DeferredAction(command *SlashCommand) {
 	response := new(IncomingWebhook)
 
 	response.Channel = "#" + command.ChannelName
@@ -47,7 +47,7 @@ func (d DecideBot) DeferredAction(command *SlashCommand) {
 }
 
 // Description describes what the robot does
-func (d DecideBot) Description() (description string) {
+func (b DecideBot) Description() (description string) {
 	return strings.Join([]string{
 		"Decides your fate!",
 		"Usage: /whistler decide Life, Death, ...",
