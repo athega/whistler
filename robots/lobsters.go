@@ -52,7 +52,7 @@ func (b LobstersBot) hottest(c *SlashCommand, args []string) {
 	}
 
 	for i, story := range stories {
-		if i > 1 {
+		if i > 2 {
 			break
 		}
 
@@ -65,7 +65,7 @@ func (b LobstersBot) hottest(c *SlashCommand, args []string) {
 
 func (b LobstersBot) respond(c *SlashCommand, text string) {
 	MakeIncomingWebhookCall(&IncomingWebhook{
-		Channel:     c.ChannelID,
+		Channel:     "@" + c.Username,
 		Username:    "Lobste.rs",
 		Text:        text,
 		IconEmoji:   ":fried_shrimp:",
