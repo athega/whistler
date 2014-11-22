@@ -47,14 +47,16 @@ func commandHandler(w http.ResponseWriter, r *http.Request) {
 		if hook {
 			c := strings.Split(command.Text, " ")
 
-			if len(c) < 1 {
+			if len(c) == 0 {
 				log.Println("No command given")
 				return
 			}
-			command.Command = c[1]
+			command.Command = c[0]
 
 			if len(c) > 1 {
-				command.Text = strings.Join(c[2:], " ")
+				command.Text = strings.Join(c[1:], " ")
+			} else {
+				command.Text = ""
 			}
 		} else {
 			command.Command = command.Command[1:]
