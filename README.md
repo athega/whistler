@@ -20,18 +20,35 @@ package robots
 type FooBot struct {
 }
 
+import (
+	"fmt"
+	"strings"
+)
+
 func init() {
 	RegisterRobot("foo", func() (robot Robot) { return new(FooBot) })
 }
 
 // Run executes a deferred action
-func (r FooBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
-	go r.DeferredAction(command)
+func (b FooBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
+	go b.DeferredAction(command)
 	return ""
 }
 
+// DeferredAction makes a incoming webhook call
+func (b FooBot) DeferredAction(command *SlashCommand) {
+	MakeIncomingWebhookCall(&IncomingWebhook{
+		Channel:     command.ChannelID,
+		Username:    "Foo Bot",
+		Text:        fmt.Sprintf("@%s Something!", command.Username),
+		IconEmoji:   ":apple:",
+		UnfurlLinks: true,
+		Parse:       "full",
+	})
+}
+
 // Description describes what the robot does
-func (r ListBot) Description() (description string) {
+func (b ListBot) Description() (description string) {
 	return strings.Join([]string{
 		"Does something!",
 		"Usage: /whistler foo [args]",
