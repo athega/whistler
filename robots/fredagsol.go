@@ -11,15 +11,15 @@ func init() {
 }
 
 // Run executes a deferred action
-func (b FredagsölBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
-	go b.DeferredAction(command)
+func (b FredagsölBot) Run(c *SlashCommand) string {
+	go b.DeferredAction(c)
 	return ""
 }
 
 // DeferredAction makes a incoming webhook call
-func (b FredagsölBot) DeferredAction(command *SlashCommand) {
+func (b FredagsölBot) DeferredAction(c *SlashCommand) {
 	MakeIncomingWebhookCall(&IncomingWebhook{
-		Channel:   command.ChannelID,
+		Channel:   c.ChannelID,
 		IconEmoji: ":beer:",
 		Username:  "Fredagsöl",
 		Text:      "Vet inte.",
@@ -27,7 +27,7 @@ func (b FredagsölBot) DeferredAction(command *SlashCommand) {
 }
 
 // Description describes the Fredagsöl bot
-func (b FredagsölBot) Description() (description string) {
+func (b FredagsölBot) Description() string {
 	return strings.Join([]string{
 		"Fredagsöl bot!",
 		"Usage: /fredagsöl",

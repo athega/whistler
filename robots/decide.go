@@ -16,10 +16,10 @@ func init() {
 }
 
 // Run executes a deferred action
-func (b DecideBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
-	go b.DeferredAction(command)
+func (b DecideBot) Run(c *SlashCommand) string {
+	go b.DeferredAction(c)
 
-	if strings.TrimSpace(command.Text) == "" {
+	if strings.TrimSpace(c.Text) == "" {
 		return "I need something to decide on!"
 	}
 
@@ -27,27 +27,29 @@ func (b DecideBot) Run(command *SlashCommand) (slashCommandImmediateReturn strin
 }
 
 // DeferredAction makes two incoming webhook calls
-func (b DecideBot) DeferredAction(command *SlashCommand) {
+func (b DecideBot) DeferredAction(c *SlashCommand) {
 	response := &IncomingWebhook{
-		Channel:     command.ChannelID,
+		Channel:     c.ChannelID,
 		Username:    "Whistler",
 		IconEmoji:   ":whistler:",
 		UnfurlLinks: true,
 		Parse:       "full",
 	}
 
-	text := strings.TrimSpace(command.Text)
+	text := strings.TrimSpace(c.Text)
 	if text != "" {
 		split := strings.Split(text, ",")
-		response.Text = fmt.Sprintf("@%s: Deciding between: (%s)", command.Username, strings.Join(split, ", "))
+
+		response.Text = fmt.Sprintf("@%s: Deciding between: (%s)", c.Username, strings.Join(split, ", "))
 		MakeIncomingWebhookCall(response)
-		response.Text = fmt.Sprintf("@%s: Decided on: %s", command.Username, Decide(split))
+
+		response.Text = fmt.Sprintf("@%s: Decided on: %s", c.Username, Decide(split))
 		MakeIncomingWebhookCall(response)
 	}
 }
 
 // Description describes what the robot does
-func (b DecideBot) Description() (description string) {
+func (b DecideBot) Description() string {
 	return strings.Join([]string{
 		"Decides your fate!",
 		"Usage: /whistler decide Life, Death, ...",
@@ -57,7 +59,7 @@ func (b DecideBot) Description() (description string) {
 }
 
 // Decide is the implementation of the decision logic
-func Decide(Fates []string) (result string) {
+func Decide(Fates []string) string {
 	r, n := rand.New(rand.NewSource(time.Now().UnixNano())), len(Fates)
 
 	if n > 0 {

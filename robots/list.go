@@ -1,5 +1,7 @@
 package robots
 
+import "strings"
+
 // ListBot is a robot that list all the robots
 type ListBot struct {
 }
@@ -9,16 +11,21 @@ func init() {
 }
 
 // Run returns a list of all robots
-func (b ListBot) Run(command *SlashCommand) (slashCommandImmediateReturn string) {
+func (b ListBot) Run(c *SlashCommand) string {
 	output := ""
-	for command, RobotInitFunction := range Robots {
-		robot := RobotInitFunction()
-		output = output + "\n" + command + " - " + robot.Description() + "\n"
+
+	for name, fn := range Robots {
+		output = output + "\n" + name + " - " + fn().Description() + "\n"
 	}
+
 	return output
 }
 
 // Description describes what the robot does
-func (b ListBot) Description() (description string) {
-	return "Lists commands!\n\tUsage: You already know how to use this!\n\tExpected Response: This message!"
+func (b ListBot) Description() string {
+	return strings.Join([]string{
+		"Lists commands!" +
+			"Usage: You already know how to use this!" +
+			"Expected Response: This message!",
+	}, "\n\t")
 }
