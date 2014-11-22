@@ -12,10 +12,18 @@ import (
 )
 
 func main() {
+	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/slack", commandHandler)
 	http.HandleFunc("/slack_hook", commandHandler)
 
+	http.Handle("/images/", http.StripPrefix("/images/",
+		http.FileServer(http.Dir("images"))))
+
 	startServer()
+}
+
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte(`<h1>Whistler</h1><img src="/images/whistler.jpg">`))
 }
 
 func commandHandler(w http.ResponseWriter, r *http.Request) {
@@ -75,7 +83,7 @@ func plainResp(w http.ResponseWriter, msg string) {
 }
 
 func startServer() {
-	log.Printf("Starting HTTP server on %s", robots.Config.Port)
+	log.Printf("Listening on http://0.0.0.0:%s", robots.Config.Port)
 
 	err := http.ListenAndServe(":"+robots.Config.Port, nil)
 	if err != nil {
