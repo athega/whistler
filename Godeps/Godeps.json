@@ -7,6 +7,10 @@
 			"Rev": "ad8849d14e5cdf1f4423b1f0fc53827ebbdd7477"
 		},
 		{
+			"ImportPath": "github.com/peterhellberg/flip",
+			"Rev": "800fe2a95b6a7be63f1a6e29f9dffc13cbf174c1"
+		},
+		{
 			"ImportPath": "github.com/peterhellberg/giphy",
 			"Rev": "36c02cdf4cfcbfabd632187fcaa4491268421352"
 		},
