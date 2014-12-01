@@ -31,7 +31,9 @@ func (b GopherBot) DeferredAction(c *SlashCommand) {
 
 	switch args[0] {
 	default:
-		b.random(c, args)
+		b.gopher(c, args)
+	case "random", "r":
+		b.random(c, args[1:])
 	case "sticker", "s":
 		b.sticker(c, args[1:])
 	}
@@ -60,6 +62,17 @@ func (b GopherBot) sticker(c *SlashCommand, args []string) {
 	}
 
 	if url := b.stickerURL(id); url != "" {
+		b.respond(c, url)
+	}
+}
+
+func (b GopherBot) gopher(c *SlashCommand, args []string) {
+	if len(args) == 0 {
+		b.respond(c, b.randomGopherURL())
+		return
+	}
+
+	if url := b.Gophers[args[0]]; url != "" {
 		b.respond(c, url)
 	}
 }
