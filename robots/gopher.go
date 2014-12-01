@@ -74,6 +74,8 @@ func (b GopherBot) gopher(c *SlashCommand, args []string) {
 
 	if url := b.Gophers[args[0]]; url != "" {
 		b.respond(c, url)
+	} else {
+		b.respond(c, b.randomGopherURL())
 	}
 }
 
