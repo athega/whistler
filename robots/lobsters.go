@@ -34,6 +34,7 @@ func (b LobstersBot) Description() string {
 	}, "\n\t")
 }
 
+// DeferredAction switches on the given arguments
 func (b LobstersBot) DeferredAction(c *SlashCommand) {
 	args := strings.Split(strings.ToLower(c.Text), " ")
 
