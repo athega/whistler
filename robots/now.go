@@ -6,6 +6,7 @@ type now struct {
 	time.Time
 }
 
+// Now creates an instance of now
 func Now(t time.Time) *now {
 	return &now{t}
 }
