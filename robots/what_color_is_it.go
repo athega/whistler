@@ -8,10 +8,21 @@ import (
 
 // WhatColorIsItBot is a “What color is it?” bot
 type WhatColorIsItBot struct {
+	Location *time.Location
 }
 
 func init() {
-	RegisterRobot("what color is it?", func() (robot Robot) { return new(WhatColorIsItBot) })
+	RegisterRobot("what color is it?", func() (robot Robot) { return NewWhatColorIsItBot() })
+}
+
+// NewWhatColorIsItBot creates a new WhatColorIsItBot
+func NewWhatColorIsItBot() *WhatColorIsItBot {
+	loc, err := time.LoadLocation("Europe/Stockholm")
+	if err != nil {
+		loc = time.FixedZone("UTC", 7200)
+	}
+
+	return &WhatColorIsItBot{Location: loc}
 }
 
 // Run executes a deferred action
@@ -48,5 +59,7 @@ func (b WhatColorIsItBot) colorHexNow() string {
 }
 
 func (b WhatColorIsItBot) colorHex(t time.Time) string {
-	return fmt.Printf("#%02d%02d%02d", t.Hour(), t.Minute(), t.Second())
+	t = t.In(b.Location)
+
+	return fmt.Sprintf("#%02d%02d%02d", t.Hour(), t.Minute(), t.Second())
 }
