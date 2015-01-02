@@ -34,12 +34,13 @@ func (b WhatColorIsItBot) Run(c *SlashCommand) string {
 // DeferredAction makes a incoming webhook call
 func (b WhatColorIsItBot) DeferredAction(c *SlashCommand) {
 	colorHex := b.colorHexNow()
+	colorURL := fmt.Sprintf("http://www.colourlovers.com/img/%s/200/200/%s.png", colorHex, colorHex)
 
 	MakeIncomingWebhookCall(&IncomingWebhook{
 		Channel:     c.ChannelID,
 		Username:    "What color is it?",
-		Text:        fmt.Sprintf("The color right now is %s", colorHex),
-		IconEmoji:   colorHex,
+		Text:        fmt.Sprintf("The color right now is #%s\n\n%s", colorHex, colorURL),
+		IconEmoji:   ":#" + colorHex + ":",
 		UnfurlLinks: true,
 		Parse:       "full",
 	})
@@ -51,6 +52,7 @@ func (b WhatColorIsItBot) Description() string {
 		"What color is it?",
 		"Usage: /whistler color",
 		"Expected Response: The color right now is #FF6600",
+		"http://www.colourlovers.com/img/FF6600/200/200/FF6600.png",
 	}, "\n\t")
 }
 
@@ -61,5 +63,5 @@ func (b WhatColorIsItBot) colorHexNow() string {
 func (b WhatColorIsItBot) colorHex(t time.Time) string {
 	t = t.In(b.Location)
 
-	return fmt.Sprintf("#%02d%02d%02d", t.Hour(), t.Minute(), t.Second())
+	return fmt.Sprintf("%02d%02d%02d", t.Hour(), t.Minute(), t.Second())
 }
