@@ -40,7 +40,7 @@ func (b WhatColorIsItBot) DeferredAction(c *SlashCommand) {
 		Channel:     c.ChannelID,
 		Username:    "What color is it?",
 		Text:        fmt.Sprintf("The color right now is #%s\n\n%s", colorHex, colorURL),
-		IconEmoji:   ":#" + colorHex + ":",
+		IconEmoji:   ":art:",
 		UnfurlLinks: true,
 		Parse:       "full",
 	})
