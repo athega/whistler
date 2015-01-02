@@ -48,11 +48,13 @@ func (b WhatColorIsItBot) DeferredAction(c *SlashCommand) {
 
 // Description describes what the robot does
 func (b WhatColorIsItBot) Description() string {
+	colorHex := b.colorHexNow()
+
 	return strings.Join([]string{
 		"What color is it?",
 		"Usage: /whistler color",
-		"Expected Response: The color right now is #FF6600",
-		"http://www.colourlovers.com/img/FF6600/200/200/FF6600.png",
+		"Expected Response: The color right now is #" + colorHex,
+		"http://www.colourlovers.com/img/" + colorHex + "/200/200/" + colorHex + ".png",
 	}, "\n\t")
 }
 
