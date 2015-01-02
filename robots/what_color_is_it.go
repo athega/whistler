@@ -12,7 +12,7 @@ type WhatColorIsItBot struct {
 }
 
 func init() {
-	RegisterRobot("what color is it?", func() (robot Robot) { return NewWhatColorIsItBot() })
+	RegisterRobot("color", func() (robot Robot) { return NewWhatColorIsItBot() })
 }
 
 // NewWhatColorIsItBot creates a new WhatColorIsItBot
@@ -49,7 +49,7 @@ func (b WhatColorIsItBot) DeferredAction(c *SlashCommand) {
 func (b WhatColorIsItBot) Description() string {
 	return strings.Join([]string{
 		"What color is it?",
-		"Usage: /whistler what color is it?",
+		"Usage: /whistler color",
 		"Expected Response: The color right now is #FF6600",
 	}, "\n\t")
 }
