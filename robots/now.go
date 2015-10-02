@@ -21,6 +21,20 @@ func (now *now) BeginningOfDay() time.Time {
 	return now.BeginningOfHour().Add(d)
 }
 
+func (now *now) BeginningOfWeek() time.Time {
+	t := now.BeginningOfDay()
+	weekday := int(t.Weekday())
+
+	if weekday == 0 {
+		weekday = 7
+	}
+
+	weekday = weekday - 1
+
+	d := time.Duration(-weekday) * 24 * time.Hour
+	return t.Add(d)
+}
+
 func (now *now) EndOfDay() time.Time {
 	return now.BeginningOfDay().Add(24*time.Hour - time.Nanosecond)
 }

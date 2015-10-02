@@ -1,7 +1,16 @@
 {
 	"ImportPath": "github.com/athega/whistler",
-	"GoVersion": "go1.4",
+	"GoVersion": "go1.5.1",
 	"Deps": [
+		{
+			"ImportPath": "github.com/PuerkitoBio/goquery",
+			"Comment": "v0.3.2-79-gb444041",
+			"Rev": "b4440419d81240f8451a505b2f806c853bc2befc"
+		},
+		{
+			"ImportPath": "github.com/andybalholm/cascadia",
+			"Rev": "3ad29d1ad1c4f2023e355603324348cf1f4b2d48"
+		},
 		{
 			"ImportPath": "github.com/gorilla/schema",
 			"Rev": "ad8849d14e5cdf1f4423b1f0fc53827ebbdd7477"
@@ -17,6 +26,14 @@
 		{
 			"ImportPath": "github.com/peterhellberg/lobsters",
 			"Rev": "46bc7fbd28447d92306f9f7cc8d224d22811dcb7"
+		},
+		{
+			"ImportPath": "github.com/peterhellberg/stockholmfoodtrucks",
+			"Rev": "796ec6c2a362cff1e936d67a83d348f6b77cacff"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "db8e4de5b2d6653f66aea53094624468caad15d2"
 		}
 	]
 }
